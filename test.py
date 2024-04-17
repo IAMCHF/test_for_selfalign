@@ -3,16 +3,16 @@ import mrcfile
 from scipy.fftpack import fftn, ifftn, fftshift
 
 # 读取mrc文件
-with mrcfile.open('IS002_291013_005_subtomo000002.mrc') as mrc:
-    data = mrc.data.astype(np.float32)
+# with mrcfile.open('IS002_291013_005_subtomo000002.mrc') as mrc:
+#     data = mrc.data.astype(np.float32)
 #
 # # 进行低通滤波，假设cutoff_freq是一个可调节的参数
 # cutoff_freq = 2  # 可以根据实际需求调整这个值
 # filtered_data = low_pass_filter(data, cutoff_freq)
 #
 # 将处理后的数据保存为mrc文件
-with mrcfile.new('output.mrc', overwrite=True) as mrc:
-    mrc.set_data(filtered_data)
+# with mrcfile.new('output.mrc', overwrite=True) as mrc:
+#     mrc.set_data(filtered_data)
 # print("当cutoff_freq等于0时，不会对图像进行低通滤波。")
 
 # data_fft = np.fft.fftn(data)
@@ -38,11 +38,11 @@ with mrcfile.new('output.mrc', overwrite=True) as mrc:
 #
 from simulate import *
 
-mask = generate_mask1((200, 200, 200))
+mask = generate_mask((32, 32, 32))
 # mask_fft = np.fft.fftn(mask)
 # mask_shifted = np.fft.fftshift(mask_fft)
 # mask_amplitude_spectrum = np.abs(mask_shifted)
-with mrcfile.new('mask.mrc', overwrite=True) as mrc:
+with mrcfile.new('mask_wedge_32.mrc', overwrite=True) as mrc:
     mrc.set_data(mask)
 # with mrcfile.new('mask_fft.mrc', overwrite=True) as mrc:
 #     mrc.set_data(mask_fft)
